@@ -24,21 +24,21 @@ Your browser will open and prompt you to enter your Azure login credentials. Aft
 
 >You have logged in. Now let us find all the subscriptions to which you have access...
 >
->[
->  {
->    "cloudName": "AzureCloud",
->    "homeTenantId": "0envbwi39-home-Tenant-Id",
->    "id": "35akss-subscription-id",
->    "isDefault": true,
->    "managedByTenants": [],
->    "name": "Subscription-Name",
->    "state": "Enabled",
->    "tenantId": "0envbwi39-TenantId",
->    "user": {
->      "name": "your-username@domain.com",
->      "type": "user"
->    }
->  }
+>[  
+>  {  
+>    "cloudName": "AzureCloud",  
+>    "homeTenantId": "0envbwi39-home-Tenant-Id",  
+>    "id": "35akss-subscription-id",  
+>    "isDefault": true,  
+>    "managedByTenants": [],  
+>    "name": "Subscription-Name",  
+>    "state": "Enabled",  
+>    "tenantId": "0envbwi39-TenantId",  
+>    "user": {  
+>      "name": "your-username@domain.com",  
+>      "type": "user"  
+>    }  
+>  }  
 >]
 
 Find the id column for the subscription account you want to use.
@@ -58,17 +58,17 @@ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIP
 ### Set your environment variables
 HashiCorp recommends setting these values as environment variables rather than saving them in your Terraform configuration as best practice ✔.
 
-> For windows
-> $Env:ARM_CLIENT_ID = "<APPID_VALUE>"
-> $Env:ARM_CLIENT_SECRET = "<PASSWORD_VALUE>"
-> $Env:ARM_SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
-> $Env:ARM_TENANT_ID = "<TENANT_VALUE>"
+> For windows  
+> $Env:ARM_CLIENT_ID = "<APPID_VALUE>"  
+> $Env:ARM_CLIENT_SECRET = "<PASSWORD_VALUE>"  
+> $Env:ARM_SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"  
+> $Env:ARM_TENANT_ID = "<TENANT_VALUE>"  
 
-> For linux
-> export ARM_CLIENT_ID="<APPID_VALUE>"
-> export ARM_CLIENT_SECRET="<PASSWORD_VALUE>"
-> export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION_ID>"
-> export ARM_TENANT_ID="<TENANT_VALUE>"
+> For linux  
+> export ARM_CLIENT_ID="<APPID_VALUE>"  
+> export ARM_CLIENT_SECRET="<PASSWORD_VALUE>"  
+> export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION_ID>"  
+> export ARM_TENANT_ID="<TENANT_VALUE>"  
 
 ### Install Terraform
 To install Terraform, find the [appropriate package](https://developer.hashicorp.com/terraform/install) for your system and download it as a zip archive.
