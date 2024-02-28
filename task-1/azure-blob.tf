@@ -10,24 +10,48 @@ terraform {
 provider "azurerm" {
   # Configuration options
     features {}
-    skip_provider_registration = true
+    #skip_provider_registration = true
 }
 
 
-# resource "random_string" "resource_code" {
-#   length  = 5
-#   special = false
-#   upper   = false
-# }
+resource "random_string" "resource_code" {
+  length  = 5
+  special = false
+  upper   = false
+}
 
 resource "azurerm_resource_group" "helmchart" {
   name     = "helmchartgroup"
   location = "East US"
 }
 
+resource "azurerm_key_vault" "helmchart" {
+  name                = "helmchart-key-vault"
+  resource_group_name = azurerm_resource_group.helmchart.name
+  location            = azurerm_resource_group.helmchart.location
+  enabled_for_disk_encryption = true
+  tenant_id           = "<Your Tenant ID>"
+  sku_name            = "standard"
+
+  access_policy {
+    tenant_id = "<Your Tenant ID>"
+    object_id = "<Your Object ID>"
+
+    key_permissions = [
+      "get",
+      "list",
+    ]
+
+    secret_permissions = [
+      "get",
+      "list",
+    ]
+  }
+}
+
+
 resource "azurerm_storage_account" "helmchart" {
-  # name                     = "helmstorage${random_string.resource_code.result}"
-  name                     = "helmstoragea49hm"
+  name                     = "helmstorage${random_string.resource_code.result}"
   resource_group_name      = azurerm_resource_group.helmchart.name
   location                 = azurerm_resource_group.helmchart.location
   account_tier             = "Standard"
