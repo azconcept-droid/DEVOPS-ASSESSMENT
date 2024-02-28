@@ -1,6 +1,8 @@
 apiVersion: v2
+appVersion: 1.0
 name: web-app-chart
-description: Basic python website
+description: A Helm chart for deploying your simple HTTP app to AKS
+
 
 # A chart can be either an 'application' or a 'library' chart.
 #

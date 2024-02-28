@@ -4,6 +4,6 @@
 
 replicaCount: 2
 image:
-  repository: your-docker-registry/your-image-name
+  repository: yalecthub/web-app
   pullPolicy: IfNotPresent
   tag: 1
