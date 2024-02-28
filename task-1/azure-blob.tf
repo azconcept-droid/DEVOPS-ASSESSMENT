@@ -1,11 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "3.93.0"
-    }
-  }
-}
 
 provider "azurerm" {
   # Configuration options
@@ -30,12 +22,12 @@ resource "azurerm_key_vault" "helmchart" {
   resource_group_name = azurerm_resource_group.helmchart.name
   location            = azurerm_resource_group.helmchart.location
   enabled_for_disk_encryption = true
-  tenant_id           = "<Your Tenant ID>"
+  tenant_id           = var.tenant_id
   sku_name            = "standard"
 
   access_policy {
-    tenant_id = "<Your Tenant ID>"
-    object_id = "<Your Object ID>"
+    tenant_id = var.tenant_id
+    object_id = var.object_id
 
     key_permissions = [
       "get",
@@ -69,15 +61,10 @@ resource "azurerm_storage_container" "helmchart" {
   container_access_type = "private"
 }
 
-# resource "azurerm_storage_blob" "helmchart" {
-#   name                   = "helm-blob"
-#   storage_account_name   = azurerm_storage_account.helmchart.name
-#   storage_container_name = azurerm_storage_container.helmchart.name
-#   type                   = "Block"
-#   source                 = "helm-repo.txt"
-# }
-
-output "storage_account_primary_access_key" {
-  value = azurerm_storage_account.helmchart.primary_access_key
-  sensitive = true
+resource "azurerm_storage_blob" "helmchart" {
+  name                   = "helm-blob"
+  storage_account_name   = azurerm_storage_account.helmchart.name
+  storage_container_name = azurerm_storage_container.helmchart.name
+  type                   = "Block"
+  source                 = "https://github.com/azconcept-droid/azeezyahaya.github.io/blob/main/index.html"
 }

@@ -1,11 +1,10 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
+# Version
 
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.67.0"
+      version = "3.93.0"
     }
   }
 
